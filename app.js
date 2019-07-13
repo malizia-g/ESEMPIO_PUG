@@ -14,7 +14,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/profile', (req, res) => {
-  res.send(req.query.id);
+  const person = people.profiles.find(p => p.id === req.query.id);
+  res.render('profile', {
+    title: `About ${person.firstname} ${person.lastname}`,
+    person,
+  });
 });
 
 app.listen(3000, function () {
